@@ -1,112 +1,284 @@
-# AI Short Video Creator - Demo Application
+# AI Short Video Creator - Frontend
 
-Ứng dụng demo để tạo video ngắn tự động bằng AI, dựa trên đặc tả trong PLAN.md.
+## 📋 Project Description
 
-## Tổng quan dự án
+A modern web application for AI-powered short video creation built with Next.js and React. This frontend provides an intuitive step-by-step workflow for users to create professional short-form videos automatically using AI, from topic selection through script generation, voice narration, background selection, to final video export and social media sharing.
 
-AI Short Video Creator là ứng dụng web cho phép người dùng tạo video ngắn tự động bằng AI. Ứng dụng cung cấp quy trình từng bước:
+## 🚀 Key Features
 
-1. Chọn chủ đề hoặc tìm kiếm từ các chủ đề xu hướng
-2. Tạo và tùy chỉnh kịch bản
-3. Chọn và tùy chỉnh giọng đọc
-4. Chọn hình nền hoặc video
-5. Chỉnh sửa và tùy chỉnh video cuối cùng
-6. Xuất và chia sẻ
+### User Authentication & Profile
 
-## Công nghệ sử dụng
+- User registration and login
+- OAuth integration (Google, Facebook)
+- Profile management and settings
+- Secure session handling with JWT
 
-- **Frontend Framework**: Next.js (React)
+### Video Creation Workflow
+
+- **Topic Selection**: Browse trending topics or create custom topics
+- **AI Script Generation**: Generate and customize video scripts with AI
+- **Voice Selection**: Choose from 30+ premium voices with preview
+- **Background Selection**: Pick from image library or upload custom backgrounds
+- **Multi-Scene Support**: Create videos with multiple background images
+- **Subtitle Customization**: Multiple subtitle styles and positioning options
+- **Real-time Preview**: Preview video before final generation
+
+### Media Management
+
+- Upload and organize media files (images, audio, video)
+- Media library with categorization and search
+- Cloud-based storage integration
+- Media type validation and preview
+
+### Social Media Integration
+
+- Direct video publishing to Facebook, TikTok, and YouTube
+- Facebook page management
+- Video analytics and performance tracking
+- Multi-platform sharing capabilities
+
+### Dashboard & Analytics
+
+- View all created videos
+- Video status tracking (processing, completed, failed)
+- Edit, delete, and share options
+- Performance metrics and engagement stats
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14+ (React 18+)
+- **Language**: TypeScript
 - **Styling**: TailwindCSS
-- **State Management**: React Context API
-- **Mock Data**: TypeScript interfaces và mock data
+- **State Management**: React Context API, Zustand
+- **API Integration**: Axios, SWR for data fetching
+- **Form Handling**: React Hook Form
+- **Authentication**: NextAuth.js
+- **UI Components**: Custom components with Tailwind
+- **Icons**: React Icons
+- **Development**: ESLint, Prettier
 
-## Hướng dẫn cài đặt và chạy dự án
+## 📁 Project Structure
 
-### Yêu cầu cơ bản
-- [Node.js](https://nodejs.org/) phiên bản 18.x hoặc cao hơn
-- npm (đi kèm với Node.js) hoặc [Yarn](https://yarnpkg.com/)
-
-### Các bước cài đặt
-
-1. Clone repository (hoặc giải nén file nếu bạn đã tải về):
-
-```bash
-git clone <repository-url>
-cd video-creator-app
+```
+Software-Design-FE/
+├── public/
+│   ├── assets/
+│   │   ├── images/          # Static images
+│   │   └── videos/          # Static videos
+│   ├── fonts/               # Custom fonts
+│   ├── stickers/            # Sticker assets
+│   └── preview-style/       # Preview templates
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── common/          # Shared components
+│   │   ├── layout/          # Layout components
+│   │   ├── video/           # Video-related components
+│   │   └── dashboard/       # Dashboard components
+│   ├── context/             # React Context providers
+│   │   ├── AuthContext.tsx  # Authentication state
+│   │   ├── VideoContext.tsx # Video creation state
+│   │   └── MediaContext.tsx # Media management state
+│   ├── hooks/               # Custom React hooks
+│   │   ├── useAuth.ts
+│   │   ├── useVideo.ts
+│   │   └── useMedia.ts
+│   ├── pages/               # Next.js pages (App Router)
+│   │   ├── index.tsx        # Home page
+│   │   ├── auth/            # Authentication pages
+│   │   ├── create/          # Video creation flow
+│   │   ├── dashboard/       # User dashboard
+│   │   └── api/             # API routes
+│   ├── services/            # API service layer
+│   │   ├── auth.service.ts
+│   │   ├── video.service.ts
+│   │   ├── media.service.ts
+│   │   └── social.service.ts
+│   ├── styles/              # Global styles
+│   │   └── globals.css
+│   ├── types/               # TypeScript type definitions
+│   │   ├── user.types.ts
+│   │   ├── video.types.ts
+│   │   └── media.types.ts
+│   └── utils/               # Utility functions
+│       ├── api.ts           # API client setup
+│       ├── validators.ts    # Form validators
+│       └── formatters.ts    # Data formatters
+├── .env.local               # Environment variables
+├── next.config.js           # Next.js configuration
+├── tailwind.config.js       # Tailwind CSS configuration
+├── tsconfig.json            # TypeScript configuration
+└── package.json             # Dependencies
 ```
 
-2. Cài đặt các dependencies:
+## 🔧 Installation
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/DucToan137/ai-short-video-creator-fe.git
+cd ai-short-video-creator-fe
+```
+
+2. **Install dependencies**
 
 ```bash
 npm install
-# hoặc
+# or
 yarn install
 ```
 
-3. Chạy development server:
+3. **Configure environment variables**
+   Create a `.env.local` file in the root directory:
+
+```env
+# API Configuration
+NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
+NEXT_PUBLIC_ENV=development
+```
+
+4. **Start the development server**
 
 ```bash
 npm run dev
-# hoặc
+# or
 yarn dev
 ```
 
-4. Mở trình duyệt và truy cập [http://localhost:3000](http://localhost:3000) để xem ứng dụng.
+5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
 
-### Build cho môi trường production
+### Build for Production
 
 ```bash
 npm run build
 npm run start
-# hoặc
+# or
 yarn build
 yarn start
 ```
 
-### Mẹo xử lý lỗi
+## 📚 Main Routes
 
-Nếu gặp lỗi khi cài đặt hoặc chạy ứng dụng:
+### Public Routes
 
-1. Đảm bảo bạn đang sử dụng phiên bản Node.js được hỗ trợ (18.x hoặc cao hơn)
-2. Xóa thư mục node_modules và file package-lock.json, sau đó chạy lại `npm install`
-3. Nếu có lỗi liên quan đến TypeScript, chạy `npx tsc --noEmit` để kiểm tra lỗi
-4. Nếu có lỗi về routing, kiểm tra file `next.config.js` và cấu trúc thư mục `pages`
+- `/` - Landing page with features showcase
+- `/auth/login` - User login page
+- `/auth/register` - User registration page
+- `/auth/forgot-password` - Password recovery
 
-## Thông tin đăng nhập demo
+### Protected Routes
 
-Bạn có thể sử dụng thông tin đăng nhập sau để thử chức năng đăng nhập:
+- `/dashboard` - User dashboard with video library
+- `/create/topic` - Topic selection step
+- `/create/script` - Script generation and editing
+- `/create/voice` - Voice selection and preview
+- `/create/background` - Background image selection
+- `/create/preview` - Video preview and customization
+- `/create/export` - Export and publishing options
 
-- **Email**: demo@example.com
-- **Password**: password
+### Media Management Routes
 
-## Các trang và tính năng
+- `/media` - Media library overview
+- `/media/upload` - Upload media files
+- `/media/images` - Image gallery
+- `/media/audio` - Audio files
+- `/media/videos` - Video files
 
-### Trang chủ
-- Hiển thị chủ đề xu hướng
-- Giới thiệu tính năng ứng dụng
-- Nút kêu gọi hành động
+### Social Media Routes
 
-### Quy trình tạo video
-1. **Chọn chủ đề**: Chọn từ các chủ đề xu hướng hoặc nhập chủ đề của riêng bạn
-2. **Tạo kịch bản**: Kịch bản được tạo bởi AI mà bạn có thể chỉnh sửa
-3. **Chọn giọng đọc**: Chọn từ các giọng đọc khác nhau và tùy chỉnh cài đặt
-4. **Chọn hình nền**: Chọn hình ảnh cho nền video của bạn
+- `/social/connect` - Connect social media accounts
+- `/social/facebook` - Facebook page management
+- `/social/analytics` - Social media analytics
 
-### Bảng điều khiển
-- Xem tất cả video bạn đã tạo
-- Tùy chọn để chỉnh sửa, xóa và chia sẻ video
-- Chỉ báo trạng thái cho quá trình xử lý video
+### Settings Routes
 
-## Ghi chú triển khai
+- `/settings/profile` - User profile settings
+- `/settings/account` - Account settings
+- `/settings/preferences` - App preferences
 
-- Đây là demo phía client với dữ liệu mẫu và API giả lập
-- Không thực hiện xử lý hoặc tạo video thực tế
-- Giao diện người dùng và quy trình hoạt động đầy đủ để minh họa khái niệm
+## 🎨 Key Components
 
-## Bước tiếp theo cho phiên bản sản phẩm
+### Video Creation Components
 
-1. Tích hợp với API backend thực tế cho việc xử lý video
-2. Triển khai xác thực người dùng và quản lý tài khoản
-3. Thêm tính năng chỉnh sửa video với trình chỉnh sửa video thực tế
-4. Triển khai lưu trữ video và phân phối CDN
-5. Thêm phân tích và khả năng chia sẻ
+- `TopicSelector` - Trending topics and custom topic input
+- `ScriptEditor` - AI-generated script editing interface
+- `VoiceSelector` - Voice preview and selection
+- `BackgroundGallery` - Background image selection
+- `VideoPreview` - Real-time video preview
+- `SubtitleCustomizer` - Subtitle style customization
+- `ExportPanel` - Video export and sharing options
+
+### Dashboard Components
+
+- `VideoCard` - Individual video display card
+- `VideoGrid` - Grid layout for video library
+- `StatusBadge` - Video processing status indicator
+- `AnalyticsChart` - Video performance charts
+
+### Common Components
+
+- `Navbar` - Navigation bar with auth status
+- `Sidebar` - Dashboard sidebar navigation
+- `Modal` - Reusable modal component
+- `Button` - Customizable button component
+- `Input` - Form input components
+- `Loader` - Loading indicators
+
+## 🔐 Authentication Flow
+
+1. User registers or logs in (email/password or OAuth)
+2. JWT token received from backend
+3. Token stored in secure HTTP-only cookie
+4. Protected routes check authentication status
+5. Automatic token refresh on expiration
+
+## 🎥 Video Creation Flow
+
+1. **Topic Selection** → Choose or create topic
+2. **Script Generation** → AI generates script from topic
+3. **Script Editing** → Customize generated script
+4. **Voice Selection** → Choose voice and preview
+5. **Background Selection** → Pick background images
+6. **Preview & Customize** → Preview video and adjust settings
+7. **Generate Video** → Backend processes video
+8. **Export & Share** → Download or publish to social media
+
+## 🗄️ State Management
+
+- **AuthContext**: User authentication state
+- **VideoContext**: Video creation workflow state
+- **MediaContext**: Media library and uploads
+- **SocialContext**: Social media connections
+- **NotificationContext**: App-wide notifications
+
+## 🔒 Security Features
+
+- Secure authentication with JWT
+- HTTP-only cookies for token storage
+- CSRF protection
+- Input validation and sanitization
+- Protected API routes
+- Secure OAuth flow
+
+## 🧪 Testing & Development
+
+```bash
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Run linter
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+
+# Type checking
+npm run type-check
+```
+
+## 📄 License
+
+This project is licensed under the MIT License.
